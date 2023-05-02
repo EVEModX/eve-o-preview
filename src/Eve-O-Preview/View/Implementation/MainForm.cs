@@ -93,6 +93,12 @@ namespace EveOPreview.View
 			set => this.EnablePerClientThumbnailsLayoutsCheckBox.Checked = value;
 		}
 
+		public bool EnableLocalizationBugSolution {
+			get => this.EnableLocalizationBugSolutionCheckBox.Checked;
+			set => this.EnableLocalizationBugSolutionCheckBox.Checked = value;
+		}
+		
+
 		public Size ThumbnailSize
 		{
 			get => new Size((int)this.ThumbnailsWidthNumericEdit.Value, (int)this.ThumbnailsHeightNumericEdit.Value);
@@ -391,5 +397,13 @@ namespace EveOPreview.View
 			this._zoomAnchorMap[ViewZoomAnchor.S] = this.ZoomAanchorSRadioButton;
 			this._zoomAnchorMap[ViewZoomAnchor.SE] = this.ZoomAanchorSERadioButton;
 		}
-	}
+
+        private void EnableLocalizationBugSolutionCheckBox_CheckedChanged(object sender, EventArgs e) {
+			if (this._suppressEvents) {
+				return;
+			}
+
+			this.ApplicationSettingsChanged?.Invoke();
+		}
+    }
 }

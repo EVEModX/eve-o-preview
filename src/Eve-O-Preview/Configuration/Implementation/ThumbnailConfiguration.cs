@@ -33,6 +33,7 @@ namespace EveOPreview.Configuration.Implementation
 			this.MinimizeInactiveClients = false;
 			this.ShowThumbnailsAlwaysOnTop = true;
 			this.EnablePerClientThumbnailLayouts = false;
+			this.EnableLocalizationBugSolution = false;
 
 			this.HideThumbnailsOnLostFocus = false;
 			this.HideThumbnailsDelay = 2; // 2 thumbnails refresh cycles (1.0 sec)
@@ -95,8 +96,9 @@ namespace EveOPreview.Configuration.Implementation
 				this._enablePerClientThumbnailLayouts = value;
 			}
 		}
+		public bool EnableLocalizationBugSolution { get; set; }
 
-		public bool HideThumbnailsOnLostFocus { get; set; }
+	public bool HideThumbnailsOnLostFocus { get; set; }
 		public int HideThumbnailsDelay { get; set; }
 
 		public Size ThumbnailSize { get; set; }

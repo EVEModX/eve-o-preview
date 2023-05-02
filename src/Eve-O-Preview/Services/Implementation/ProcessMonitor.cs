@@ -1,6 +1,8 @@
-﻿using System;
+﻿using EveOPreview.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+
 
 namespace EveOPreview.Services.Implementation
 {
@@ -13,13 +15,14 @@ namespace EveOPreview.Services.Implementation
 
 		#region Private fields
 		private readonly IDictionary<IntPtr, string> _processCache;
+		private readonly IThumbnailConfiguration _configuration;
 		private IProcessInfo _currentProcessInfo;
 		#endregion
 
-		public ProcessMonitor()
+		public ProcessMonitor(IThumbnailConfiguration configuration)
 		{
 			this._processCache = new Dictionary<IntPtr, string>(512);
-			
+			this._configuration = configuration;
 			// This field cannot be initialized properly in constructor
 			// At the moment this code is executed the main application window is not yet initialized
 			this._currentProcessInfo = new ProcessInfo(IntPtr.Zero, "");
@@ -81,14 +84,19 @@ namespace EveOPreview.Services.Implementation
 				{
 					continue;
 				}
-
+				
 				IntPtr mainWindowHandle = process.MainWindowHandle;
 				if (mainWindowHandle == IntPtr.Zero)
 				{
 					continue; // No need to monitor non-visual processes
 				}
-
-				string mainWindowTitle = process.MainWindowTitle;
+				// Use username in ssoToken/jwt 
+				string mainWindowTitle;				 
+				if (_configuration.EnableLocalizationBugSolution) {
+					mainWindowTitle = "EVE - " + Utility.GetAccountName(process);
+				} else {
+					mainWindowTitle = process.MainWindowTitle;
+				}
 				this._processCache.TryGetValue(mainWindowHandle, out string cachedTitle);
 
 				if (cachedTitle == null)

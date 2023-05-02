@@ -8,6 +8,7 @@ namespace EveOPreview.Services.Implementation
 		{
 			this.Handle = handle;
 			this.Title = title;
+
 		}
 
 		public IntPtr Handle { get; }

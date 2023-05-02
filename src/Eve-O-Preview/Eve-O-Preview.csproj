@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EveOPreview</RootNamespace>
     <AssemblyName>EVE-O Preview</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
@@ -91,6 +91,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO" />
     <Reference Include="System.Linq.Expressions" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Runtime" />
     <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Windows.Forms" />
@@ -132,6 +133,7 @@
     <Compile Include="Presenters\Interface\IMainFormPresenter.cs" />
     <Compile Include="Services\Implementation\ProcessInfo.cs" />
     <Compile Include="Services\Implementation\ProcessMonitor.cs" />
+    <Compile Include="Services\Implementation\Utility.cs" />
     <Compile Include="Services\Interface\IProcessInfo.cs" />
     <Compile Include="Services\Interface\IProcessMonitor.cs" />
     <Compile Include="Services\Implementation\DwmThumbnail.cs" />
@@ -243,6 +245,9 @@
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt">
+      <Version>6.30.0</Version>
     </PackageReference>
     <PackageReference Include="System.ValueTuple">
       <Version>4.5.0</Version>
